@@ -20,15 +20,15 @@ Usage:
 
 4. Common options:
 
-   -num_buffers_per_app_thread <num>  :number of buffers to allocate per application thread,        default   3  
+   -num_buffers_per_app_thread \<num\>  :number of buffers to allocate per application thread,        default   3  
    
-   -num_pages_in_buffer <num>         :number of (4096byte) pages allocated in each buffer,         default 64M
+   -num_pages_in_buffer \<num\>         :number of (4096byte) pages allocated in each buffer,         default 64M
    
-   -process_buffs <0 or 1>            :specify 0 to disable processing of the buffers,              default   1
+   -process_buffs \<0 or 1\>            :specify 0 to disable processing of the buffers,              default   1
    
-   -num_processing_threads <num>      :number of internal-tool buffer processing threads to create, default   3
+   -num_processing_threads \<num\>      :number of internal-tool buffer processing threads to create, default   3
    
-   -num_bbs_in_trace <num>            :number of basic blocks per trace,                            default   3
+   -num_bbs_in_trace \<num\>            :number of basic blocks per trace,                            default   3
    
    -filter_no_shared_libs             :filter out shared library code
    
