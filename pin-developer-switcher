@@ -1,0 +1,595 @@
+Pin 2.12
+Copyright (c) 2003-2012, Intel Corporation. All rights reserved.
+VERSION: 53241 BUILDER: BUILDER DATE: Aug  8 2012
+Usage: pin [OPTION] [-t <tool> [<toolargs>]] -- <command line>
+Use -help for a description of options
+
+Runtime library control for pin
+
+-pin_runtime  [default 0]
+	Use pin's runtime
+-pin_runtime_path  [default ]
+	Directory of pin and tool runtime
+
+General developer switches
+
+-241runtime  [default 0]
+	Use a 2.4.1 runtime for pin and tool
+-allow_AVX_support  [default 1]
+	allow AVX suport
+-appdebug_compression  [default 1]
+	Enables run-length compression in packets sent to the debugger.
+-append_logfile  [default 0]
+	Append to the end of the log file if it already exists
+-avg_ibranch_targets  [default 32]
+	Average number of targets per indirect branch
+-break_iaddr  [default 0]
+	set breakpoint at this iaddr
+-break_oaddr  [default 0]
+	set breakpoint at this oaddr
+-break_vmcnt  [default 0]
+	set breakpoint at this vmsvc count
+-bridge_save_fp  [default 1]
+	Preserve XMM/YMM registers accross calls to analysis routines
+-bridge_save_mxcsr  [default 1]
+	Preserve mxcsr register accross calls to analysis routines
+-bridge_save_x87  [default 1]
+	Preserve X87 fp-stack registers accross calls to analysis routines
+-bridge_set_mxcsr  [default 0]
+	analysis routines want to change the app value of mxcsr
+-chain_before_iblt  [default 1]
+	Number of chained indirect branch predictions before switching to the
+	hash table lookup
+-clone_maxlen  [default 3]
+	max. # of instructions in a function considered for cloning(special
+	meanings: 0=no cloning, N<0 means cloning all functions) 
+
+-comment  [default 0]
+	Attach comments to data structures
+-configuration  [default 0]
+	dump configuration information of pin
+-core_dir  [default ]
+	Core dump location (works only if application creates a signal handler
+	or pin asserts).
+-cpuid  [default 0]
+	print cpuid information
+-detach_iaddr  [default 0]
+	Detach to native when tranferring to this iaddr
+-disable_current_location  [default 0]
+	Disable the current-location marker code (this will cause bugs in many
+	applications)
+-emulate_tsx_as_aborted  [default 0]
+	emulate tsx with non-tsx, xbegin always takes abort path
+-generate_then_code_exception  [default 0]
+	Generate code for the THEN sequence that will cause an exception
+-iblt_alignment_bits  [default 4]
+	Number of LSB bits of app target IP loose in indirect branch lookup
+	table index
+-iblt_density  [default 25]
+	Maximum IBLT density
+-iblt_max_size  [default 65536]
+	Maximum number of IBLT entries. Rounded up to power of 2
+-iblt_min_size  [default 16384]
+	Minimum number of IBLT entries. Rounded up to power of 2
+-image_reserve  [default 0]
+	reserve space for image before mapping sections
+-inline_bridge  [default 1]
+	Inline the bridge code
+-inline_maxlen  [default 20]
+	max. number of instructions in an analysis routine allowed to be
+	inlined
+-inline_scheduling  [default 0]
+	Schedule inlined analysis code to avoid the need to save/restore
+	eflags
+-instrcount  [default 0]
+	maximum number of instrumentation points for debugging
+-late_injection  [default 0]
+	Late injection (after initialization APC) on Windows
+-lea_trick  [default 1]
+	Use LEA to avoid modifying eflags
+
+-link_indirect  [default 1]
+	Link indirect branches
+-link_return  [default 1]
+	Link returns
+-log_xed_decode  [default 0]
+	log all decodes
+-log_xed_encode  [default 0]
+	log all encodes
+-malloc_reuse_pages  [default 0]
+	Pin malloc reuses pages instead of unmapping
+-no_inline_bridge_to_then  [default 1]
+	Implement calls to THEN code via non-inlined bridge
+-nocmov  [default 0]
+	disable the use of CMOV even on machines which support it
+-opt_stack_param  [default 1]
+	stack value optimizations
+-opt_stack_param_failure_assert  [default 0]
+	stack param optimization failure assertion
+-opt_value  [default 1]
+	value optimizations
+-pin_morecore_32  [default 0]
+	Choose location for morecore32 memory
+
+-printbr  [default 0]
+	Print branch information in disassembly
+-printpinreg  [default 0]
+	Print Pin registers in disassembly
+-ptrace_stack_size  [default 0x10000]
+	Size (in bytes) of the stack allocated by ptrace for pin
+-rawinst  [default 0]
+	Print raw instruction encoding in string conversions
+-reserve_app_memory_range 
+	reserve memory for application use, 0x40000000:0x41000000
+-reserve_memory  [default none]
+	reserve memory for app use
+-separately_handled_xmm  [default 1]
+	separtely handled xmm
+-syscall_smc  [default 0]
+	execute pseudo 'I$ flush' system call for code Pin generates (useful
+	for running Pin under Pin)
+
+-txrep  [default 1]
+	Translate rep into loop
+-use_iblt  [default 1]
+	Use hash tables to resolve indirect branch targets
+
+-version_check  [default 1]
+	Check that pin/tool versions match
+-xedenc  [default 0]
+	XED encoder testing
+-xedlog  [default 0]
+	XED log messages levels 0-5
+-xedlogfile  [default xed.log]
+	The XED logfile prefix
+-xedreencodecache  [default 1]
+	XED reencode cache
+-xedreencodetest  [default 0]
+	XED reencode test
+-xedvalidateencoding  [default 0]
+	Check the encoding by decoding and comparing
+
+Basic switches
+
+-ctxt_fp  [default 1]
+	Saving the Context of FPU Applications
+-pause_abort  [default 0]
+	Pause and print pid so gdb can attach before pin aborts
+
+Code cache profiler
+
+-cc_profile  [default 0]
+	profile the code cache instructions
+-cc_profile_file  [default pin.dlog]
+	specify profile file name
+-cc_profile_no_bbl_report  [default 0]
+	omit the per-bbl report
+-cc_profile_pid  [default 0]
+	Make profile files unique by adding pid to end
+-cc_profile_types_only  [default 0]
+	determine the profile class for each INS
+
+Self-checking done inside Pin
+
+
+Code cache developer switches
+
+-cache_block_size  [default 262144]
+	Size (in bytes) of the code cache allocation units. Set to a multiple
+	of the pagesize() for best results.
+-cache_policy  [default flush]
+	Code Cache Replacement Policy (flush|custom)
+-cache_regbindings  [default 1]
+	maintain a cache of regbindings
+-calldepth  [default 1]
+	Depth of a call chain (1, 2, 4, 8, 16)
+-code_cache  [default 1]
+	Use code cache
+-contiguous_code_cache  [default 0]
+	Force the code cache to reside in contiguous memory and allocate on
+	startup
+-flush_on_mmap  [default 1]
+	Flush the code cache whenever conflicting memory is mapped
+-high_water_mark  [default 80]
+	Percentage of code cache occupancy that should trigger a code cache
+	flush (1-100)
+-link_pcrel  [default 1]
+	Link PC Relative branches
+-reconcile  [default 1]
+	Use reconciliation
+-regbindings_cache_limit  [default 64]
+	capacity of the cache of regbindings (0 - unlimited cache)
+
+General switches
+
+-debug_miniloader  [default 0]
+	debug miniloader
+-detach_count  [default 0]
+	Detach when vm svc count equals this value
+-detach_fini  [default 0]
+	Call fini functions when detaching
+-div_zero_count  [default 0]
+	cause divide by zero exception if stop_region is encountered
+-dump_all_count  [default 0]
+	start logging debug info when reach count
+-itc  [default 0]
+	check that Pin's vm_clone is not called in ITC
+
+-max_ins  [default 16384]
+	Maximum number of INS allowed
+-max_rtn  [default 16384]
+	Maximum number of RTN allowed
+-max_sec  [default 16384]
+	Maximum number of SEC allowed
+-max_sym  [default 16384]
+	Maximum number of SYM allowed
+-recycle  [default 1]
+	Reuse freed stripe elements
+-recycle_rtn  [default 1]
+	Reuse freed rtn
+-unlink_count  [default 0]
+	Will unlink and disable linking when the vm svc count reaches this
+	number
+
+IA-32 architecture and Intel(R) 64 architecture disassembly format
+
+-attprint  [default 0]
+	Disassemble using ATT format
+-intelprint  [default 0]
+	Disassemble using Intel format (default)
+-xedprint  [default 0]
+	Disassemble using XED format
+
+Gui switches
+
+
+Memory Log Switches
+
+-memlog_atomic  [default 1]
+	Memory log updates are atomic
+-memlog_unique  [default 0]
+	The memory logfile name will contain the pid
+-memlogfile  [default pin.mlog]
+	The memory logfile prefix
+-memlogon 
+	enable given memory log type
+-memlogsize  [default 0x800000]
+	Specify size (bytes) for in-memory debug log
+
+Message switches
+
+-assert 
+	trigger an assert for testing purposes
+-error 
+	trigger an error for testing purposes (and exit)
+-fatal 
+	trigger a fatal error for testing purposes
+-mesgoff 
+	disable given message type
+-mesgon 
+	enable given message type
+
+Pause and Detach switches
+
+-pause  [default 0]
+	Print pid and pause for the specified number of seconds so gdb can
+	attach after pin is loaded
+-pause_app  [default 0]
+	Pause and print pid so gdb can attach after application is loaded
+-pause_attach  [default 0]
+	Print pid and pause for the specified number of seconds so gdb can
+	attach after pin is loaded
+-pause_detach  [default 0]
+	Print pid and pause for the specified number of seconds so gdb can
+	attach after pin is loaded
+-pause_detach_probed  [default 0]
+	Print pid and pause for the specified number of seconds so gdb can
+	attach after pin is loaded
+-pause_miniloader  [default 0]
+	Pause and print pid so gdb can attach before miniloader is run
+-pause_miniloader_when_execv  [default ]
+	specify full path of execve file for which miniloader should pause
+-pause_thread  [default 0]
+	Print tid and pause for the specified number of seconds so gdb can
+	attach after thread is started
+
+Register allocation switches
+
+-flags_split  [default 1]
+	split eflags representation
+-ins_reusing  [default 1]
+	Enable ins reusing
+-inter_trace_liveness  [default 0]
+	Perform register liveness across traces
+-liveness  [default 1]
+	Perform register liveness analysis or not at all
+-precise_flags  [default 1]
+	Enable precise flags analysis
+-regalloc  [default 1]
+	Enable register allocation
+-regalloc_aggliveness  [default 0]
+	More aggressive register liveness analysis
+-regalloc_hints  [default 1]
+	Use register allocator hints
+-regalloc_immspillptr  [default 1]
+	Use immediate value as the pointer to the spill area
+-regalloc_validate  [default 0]
+	Validate the ins encoding after allocating regs to it
+-scoped_pin_regs  [default 1]
+	Use scoping for register liveness
+-simple_regalloc  [default 0]
+	Enable simple register allocation
+-spillslot_dest_memop  [default 1]
+	Enable usage of spilled registers from their spill slots as
+	destination memops
+-spillslot_memop  [default 1]
+	Enable usage of spilled registers from their spill slots
+-switchstack  [default 1]
+	Enable stack switching
+-use_sahf  [default 1]
+	use sahf lahf to save restore eflags
+
+Region generation switches
+
+-disable_32bit_alloc  [default 0]
+	disable memory allocation in 32bit address space
+-jit_all_exits  [default 0]
+	Force the jitting of all exit targets of a region, within contrains of
+	the KnobMaxRecursionLevel
+-max_jit_recursion_level  [default 0]
+	maximum recursion level that can be reached when jitting the exit
+	targets of a region
+-region_max_bbls  [default 3]
+	Max number of bbls fetched in a region
+-region_max_inss  [default 70]
+	Max number of instructions fetched in a region
+-region_stop_at_backedge  [default 0]
+	Stop region at the target of a backedge originating in the region
+-segment_ea  [default 1]
+	Computation of effective addresses with seg override
+
+-smc_check_all  [default 0]
+	Check all regions for SMC
+-svt_short_size_limit  [default 8]
+	Upper size bound for 'short' self-validating regions
+-virtual_segments  [default 1]
+	Virtual access to segment registers
+
+-vmenter_thru_spillarea  [default 1]
+	Call VmEnter via spill area
+
+Code cache profiler
+
+-sampling  [default 0]
+	activate code sampling
+
+Signal handling switches
+
+-catch_signals  [default 1]
+	Catch signals
+-fast_signals  [default 1]
+	Faster signal emulation
+-signal_mode  [default noregs]
+	Initial signal mode (noregs|asyncregs|syncregs)
+
+Statistic switches
+
+-profile  [default 0]
+	print breakdown of where time and memory are spent in the VM
+-profile_period  [default 0]
+	Dump profile stats to the log file every <profile_period> number of
+	times the VM is entered
+-statistic  [default 0]
+	print general statistics
+-vm_exit  [default 0]
+	Vm calls exit(). Useful for using gprof and code coverage
+
+System switches
+
+
+VSM developer switches
+
+-enable_vsm  [default 1]
+	Enables the VM shutdown manager. This will activate thread
+	synchronization during VM shutdown. The VSM is disabled by default on
+	Windows since in some rare (but viable) cases, the synchronization may
+	cause re-entering the crt dll uninit code, which results in a
+	deadlock.
+
+General switches
+
+-app_filename  [default ]
+	filename to use for exec system call of application, empty string will
+	use argv[0]
+-debug_instrumented_processes  [default 0]
+	Print message to allow debugger attach to instrumented processes
+-detach_reattach  [default 0]
+	Allow detach and reattach in probe mode
+-error_file  [default ]
+	The error file name
+-follow_execv  [default 0]
+	Execute with Pin all processes spawned by execv class system calls
+-gprof  [default 0]
+	Enable gprof
+-help  [default 0]
+	Print help message
+-ifeellucky  [default 0]
+	skip warning message for unsupported platforms and convert some errors
+	to warnings
+-injection  [default dynamic]
+	Type of injection: self, child, parent, dynamic
+-inline  [default 1]
+	inline simple analysis routines
+-log_inline  [default 0]
+	Prints if analysis routine is inlined or not
+-logfile  [default pin.log]
+	The log file path and file name
+-move_then_to_stub  [default 1]
+	Move the THEN sequence of IF-THEN instrumentation to the stub section
+-mt  [default 1]
+	Allow multithreaded programs
+-p32  [default ]
+	Specify Pin binary for IA-32 architecture
+-p64  [default ]
+	Specify Pin binary for Intel(R) 64 architecture
+-pause_tool  [default 0]
+	Pause and print pid so debugger can attach after tool is loaded
+-pid  [default 0]
+	Attach to process with PID
+-pin_memory_range  [default 0:0]
+	Restrict pin to a memory range, 0x80000000:0x90000000
+  or size:
+	0:0x10000000
+-probe  [default 0]
+	Tool uses Pin Probes
+-separate_memory  [default 0]
+	Redirect pin and tool memory allocation to separate area
+-smc_strict  [default 0]
+	Check for self-modifications inside basic block
+-smc_support  [default 1]
+	Support self-modifying code (SMC)
+-t64  [default ]
+	Specify tool binary for Intel(R) 64 architecture
+-tool_exit  [default 0]
+	Tool calls exit()
+-tool_exit_timeout  [default 20]
+	Graceful period, in seconds, for Pin to wait for the termination of
+	tool's private threads
+-tool_load_option 
+	additional options for loading the tool
+-unique_error_file  [default 0]
+	The error file name will contain the pid
+-unique_logfile  [default 0]
+	The log file names will contain the pid
+-version  [default 0]
+	Print version message
+-version_long  [default 0]
+	Print version/diagnostic message
+
+General switches (available in pin and tool)
+
+-slow_asserts  [default 0]
+	Perform expensive sanity checks
+
+Switches to debug the application
+
+-appdebug  [default 0]
+	Debug the application, stopping in the debugger as soon as the
+	application is launched.
+-appdebug_allow_remote  [default 0]
+	When application debugging is enabled, the default behavior requires
+	the debugger to run on the same system as Pin.  This knob allows Pin
+	to connect to an external debugger that runs on a remote system.  This
+	knob is ignored when -appdebug_connection is specified because
+	-appdebug_connection explicitly specifies the machine on which the
+	debugger runs.
+-appdebug_connection  [default ]
+	When application debugging is enabled, Pin's default behavior is to
+	open a TCP port and wait for a debugger to connect.  This knob
+	reverses the roles; the debugger opens a TCP port and waits for Pin to
+	connect to the port specified in this knob.  The format of the knob
+	value should be "[ip]:port".  If the "ip" address is specified, it
+	should be in dot-decimal notation.  If "ip" is omitted, Pin connects
+	to the specified port on the local machine.  The port number should be
+	specified in decimal.  Note that this knob is never used when
+	debugging with GDB.
+-appdebug_enable  [default 0]
+	Enable application level debugger support, but do not stop when the
+	application is launched.  Instead, you can connect a debugger after
+	launch.
+-appdebug_exclude 
+	When application debugging and -follow_execv are both specified, the
+	default behavior is to enable debugging on all child processes.  This
+	knob, which is repeatable, specifies an application name for which
+	debugging is disabled.  Debugging is disabled for a process if it's
+	argv[0] value matches one of the -appdebug_exclude names.
+-appdebug_silent  [default 0]
+	When application debugging is enabled, Pin normally prints a message
+	telling how to connect an external debugger.  This knob disables the
+	message.  Pin never prints this message when -appdebug_connection is
+	specified.
+
+Code cache switches
+
+-limit_code_cache  [default 0]
+	Max (in bytes) code cache size (0==unlimited)
+
+Available Memory Log Types
+  syscall             Log emulated system calls.
+  signal              Log signal handling.
+  vmdispatch          Log entries into VM.
+  debugger            Log application-level debugger activity.
+
+MESSAGE TYPES
+Name            Flags      Purpose                                  
+================================================================================
+assert         [QT1_L]  assert                                  
+console        [__1__]  console                                 
+console_noprefix[__1__]  console                                 
+debug          [__0__]  generic debug                           
+error          [__1_L]  errors                                  
+error          [Q_1_L]  errors                                  
+error          [__1_L]  errors                                  
+info           [__0__]  info                                    
+known          [__1__]  known problem                           
+log            [__1_L]  generic log                             
+log_buffer     [__0RL]  pin log: buffering                      
+log_callapp    [__0_L]  pin log: call application function      
+log_cblock     [__0_L]  pin log: code cache blocks              
+log_ccd        [__0_L]  pin log: code cache directory           
+log_ccm        [__0_L]  pin log: code cache management          
+log_ccprofile  [__0_L]  pin log: CC profile                     
+log_cfg        [__0_L]  pin log: control flow graph             
+log_compile    [__0_L]  pin log: compile code                   
+log_curloc     [__0_L]  pin log: set 'current location'         
+log_debugger   [__0_L]  pin log: Debugger                       
+log_depot      [__0_L]  pin log: Thread Depot                   
+log_detach     [__0_L]  pin log: DETACH                         
+log_dis        [__0_L]  pin log: disassembly                    
+log_emu        [__0_L]  pin log: emulator                       
+log_encoding   [__0RL]  pin log: encodings                      
+log_fetch      [__0_L]  pin log: fetch code                     
+log_fetch_rtn_ins[__0_L]  pin log: fetch_rtn_ins                  
+log_final      [__0_L]  pin log: final code                     
+log_ibranch    [__0_L]  pin log: IBRANCH                        
+log_image      [__0_L]  pin log: image API                      
+log_injector   [__0_L]  pin log: injector                       
+log_inline     [__0_L]  pin log: inline                         
+log_ins_reuse  [__0_L]  pin log: ins_reusing                    
+log_instrument [__0_L]  pin log: instrumentation                
+log_ipf        [__0_L]  pin log: ipf debug                      
+log_links      [__0_L]  pin log: code cache trace links         
+log_liveness   [__0_L]  pin log: Liveness                       
+log_mac        [__0_L]  pin log: mac log                        
+log_mac_syscall[__0_L]  pin log: mac syscall log                
+log_memory     [__0_L]  pin log: Memory                         
+log_mkbbls     [__0_L]  pin log: make basic blocks              
+log_optimizeearly[__0_L]  pin log: early optimization             
+log_optimizelate[__0_L]  pin log: late optimization              
+log_probe      [__0_L]  pin log: probe                          
+log_proto      [__0_L]  pin log: prototype                      
+log_regalloc   [__0_L]  pin log: register allocation            
+log_regalloc_cfg[__0_L]  pin log: register allocator cfg         
+log_regalloc_walk[__0_L]  pin log: register allocator cfg walk    
+log_regbindings[__0_L]  pin log: recovered register bindings    
+log_resolve    [__0_L]  pin log: resolve branch targets         
+log_sampling   [__0_L]  pin log: SAMPLING                       
+log_signal     [__0_L]  pin log: signal emulation               
+log_signalstats[__0_L]  pin log: signal statistics              
+log_smc        [__0_L]  pin log: SMC                            
+log_sym        [__0_L]  pin log: symbol API                     
+log_syscall    [__0_L]  pin log: system calls                   
+log_unwind     [__0_L]  pin log: unwind                         
+log_valueprop  [__0_L]  pin log: ValueProp                      
+log_vmdispatch [__0_L]  pin log: VM dispatch                    
+log_vmsvc      [__0_L]  pin log: VM service                     
+log_vsm        [__0_L]  pin log: VM Shutdown Manager            
+log_win        [__0_L]  pin log: Windows                        
+log_xed        [__0_L]  pin log: xed                            
+log_xlate      [__0_L]  pin log: translation                    
+opportunity    [__1__]  generic optimization opportunity        
+phase          [__0R_]  phase                                   
+stats          [__1__]  statistic                               
+warning        [__0_L]  warnings                                
+For usage information from a pintool, try pin -t <tool> -h -- <command line>
+
